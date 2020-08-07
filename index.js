@@ -32,20 +32,20 @@ function handleInput(event) {
   }
 }
 
-function checkPrice(value, ship) {
-  if (value === "") {
+function checkPrice(val, ship) {
+  if (val === "") {
     alert(NO_PRICE);
     return -1;
   }
-  if (value < 0 || ship < 0) {
+  if (val < 0 || ship < 0) {
     alert(PRICE_ROW_THAN_ZERO);
     return -1;
   }
   let sum = 0;
   if (ship === "") {
-    sum = parseInt(value);
+    sum = parseInt(val);
   } else {
-    sum = parseInt(value) + parseInt(ship);
+    sum = parseInt(val) + parseInt(ship);
   }
   return sum;
 }
