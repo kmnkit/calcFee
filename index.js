@@ -23,7 +23,6 @@ function clearShipping(event) {
 function handleInput(event) {
   const char = event.key;
   if (isNaN(char)) {
-    console.log(char);
     alert("숫자만 입력해 주세요.");
     event.preventDefault();
     return true;
@@ -80,7 +79,8 @@ function handleCalc(event) {
   } else {
     fee = calcFeeShop(price);
   }
-  const ESTIMATE = JSON.stringify((price + fee) * 12);
+  fee = Math.ceil(fee);
+  const ESTIMATE = JSON.stringify(Math.ceil((price + fee) * 12));
   MESSAGE.innerText =
     "견적 금액 : " + `${ESTIMATE}원입니다.\n(포함된 대행료 : ${fee * 12}원)`;
 }
