@@ -30,7 +30,13 @@
       <div id="calc-form__price">
         2.물품 금액을 입력해주세요.
         <div id="calc-form__price-input">
-          <input type="text" id="price" name="price" placeholder="물품금액" />
+          <input
+            type="text"
+            id="calc-form__price-input__text"
+            name="price"
+            placeholder="물품금액"
+          />
+          <input type="button" id="calc-form__price-input__btn" value="❌" />
         </div>
       </div>
       <!-- 배송료 입력 -->
@@ -39,10 +45,11 @@
         <div id="calc-form__shipping-message">
           <input
             type="text"
-            id="shipping"
+            id="calc-form__shipping-input__text"
             name="shipping"
             placeholder="일본내송료"
           />
+          <input type="button" id="calc-form__shipping-input__btn" value="❌" />
         </div>
       </div>
       <!-- 견적 계산 버튼 -->

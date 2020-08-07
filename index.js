@@ -1,13 +1,36 @@
 const MERCARI = document.getElementById("mercari"),
   ETC = document.getElementById("etc"),
-  PRICE = document.getElementById("price"),
-  SHIPPING = document.getElementById("shipping"),
+  PRICE = document.getElementById("calc-form__price-input__text"),
+  SHIPPING = document.getElementById("calc-form__shipping-input__text"),
   BTN = document.getElementById("btn"),
   MESSAGE = document.querySelector(".js-price"),
+  PRICE_CLEAR_BTN = document.getElementById("calc-form__price-input__btn"),
+  SHIPPING_CLEAR_BTN = document.getElementById(
+    "calc-form__shipping-input__btn"
+  ),
   NO_PRICE = "금액이 입력되지 않았습니다",
   PRICE_ROW_THAN_ZERO = "금액이 0보다 작습니다.";
 
 const stdPrice = 5000;
+
+function clearPrice(event) {
+  PRICE.value = "";
+}
+function clearShipping(event) {
+  SHIPPING.value = "";
+}
+
+function handleInput(event) {
+  const char = event.key;
+  if (isNaN(char)) {
+    console.log(char);
+    alert("숫자만 입력해 주세요.");
+    event.preventDefault();
+    return true;
+  } else {
+    return false;
+  }
+}
 
 function checkPrice(value, ship) {
   if (value === "") {
@@ -64,5 +87,9 @@ function handleCalc(event) {
 
 function init() {
   BTN.addEventListener("click", handleCalc);
+  PRICE.addEventListener("keypress", handleInput);
+  SHIPPING.addEventListener("keypress", handleInput);
+  PRICE_CLEAR_BTN.addEventListener("click", clearPrice);
+  SHIPPING_CLEAR_BTN.addEventListener("click", clearShipping);
 }
 init();
