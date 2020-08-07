@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>셀프 견적 산출기</title>
+  </head>
+  <body>
+    <header class="calc-form__header">HobbyLabo 셀프 견적 계산기</header>
+    <form method="get" id="calc-form">
+      <!-- 구매 플랫폼 선택 -->
+      <div id="calc-form__platform">
+        1.구매할 플랫폼을 선택해주세요.
+      </div>
+      <!-- 프리마 어플 -->
+      <div id="calc-form__platform-mercari">
+        <input
+          type="radio"
+          id="mercari"
+          name="platform"
+          checked
+        />메루카리/야후옥션/라쿠마
+      </div>
+      <!-- 프리마 어플 외 -->
+      <div id="calc-form__platform-etc">
+        <input type="radio" id="etc" name="platform" />그 외
+      </div>
+      <!-- 구매금액 입력 -->
+      <div id="calc-form__price">
+        2.물품 금액을 입력해주세요.
+        <div id="calc-form__price-input">
+          <input type="text" id="price" name="price" placeholder="물품금액" />
+        </div>
+      </div>
+      <!-- 배송료 입력 -->
+      <div id="calc-form__shipping">
+        3.일본내 송료를 입력해주세요.<br />(메루카리 등 송료가 없는 경우 0)
+        <div id="calc-form__shipping-message">
+          <input
+            type="text"
+            id="shipping"
+            name="shipping"
+            placeholder="일본내송료"
+          />
+        </div>
+      </div>
+      <!-- 견적 계산 버튼 -->
+      <input type="button" id="btn" name="calc" value="계산" />
+    </form>
+    <span class="js-price"></span>
+    <script src="index.js"></script>
+  </body>
+</html>

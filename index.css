@@ -1,0 +1,34 @@
+.calc-form__header {
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+
+.calc-form {
+  border: black;
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+#calc-form__platform,
+#calc-form__price,
+#calc-form__shipping {
+  font-weight: 600;
+  font-size: 19px;
+  margin-top: 10px;
+}
+
+#btn {
+  margin-top: 25px;
+  width: 85px;
+  height: 25px;
+}
+
+span {
+  font-weight: 600;
+  font-size: 18px;
+}
