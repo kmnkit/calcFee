@@ -34,6 +34,7 @@
             type="text"
             id="calc-form__price-input__text"
             name="price"
+            onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"
             placeholder="물품금액"
           />
           <input type="button" id="calc-form__price-input__btn" value="❌" />
@@ -41,12 +42,14 @@
       </div>
       <!-- 배송료 입력 -->
       <div id="calc-form__shipping">
-        3.일본내 송료를 입력해주세요.<br />(메루카리 등 송료가 없는 경우 0)
+        3.일본내 송료를 입력해주세요.<br />(메루카리 등 송료가 없는 경우 비워도
+        됨.)
         <div id="calc-form__shipping-message">
           <input
             type="text"
             id="calc-form__shipping-input__text"
             name="shipping"
+            onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"
             placeholder="일본내송료"
           />
           <input type="button" id="calc-form__shipping-input__btn" value="❌" />
@@ -56,6 +59,11 @@
       <input type="button" id="btn" name="calc" value="계산" />
     </form>
     <span class="js-price"></span>
+    <a
+      href="https://hobbylabo.blog.me/221872142858"
+      target="_blank"
+      class="account-link"
+    ></a>
     <script src="index.js"></script>
   </body>
 </html>

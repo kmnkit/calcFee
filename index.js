@@ -8,8 +8,9 @@ const MERCARI = document.getElementById("mercari"),
   SHIPPING_CLEAR_BTN = document.getElementById(
     "calc-form__shipping-input__btn"
   ),
-  NO_PRICE = "금액이 입력되지 않았습니다",
-  PRICE_ROW_THAN_ZERO = "금액이 0보다 작습니다.";
+  ACCOUNT_INFO = document.querySelector(".account-link"),
+  ERR_NO_PRICE = "금액이 입력되지 않았습니다",
+  ERR_PRICE_ROW_THAN_ONE = "금액이 1보다 작습니다.";
 
 const stdPrice = 5000;
 
@@ -20,33 +21,14 @@ function clearShipping(event) {
   SHIPPING.value = "";
 }
 
-function handleInput(event) {
-  const char = event.key;
-  if (isNaN(char)) {
-    alert("숫자만 입력해 주세요.");
-    event.preventDefault();
-    return true;
-  } else {
-    return false;
-  }
-}
-
-function checkPrice(val, ship) {
-  if (val === "") {
-    alert(NO_PRICE);
+function checkInput(val) {
+  if (isNaN(val)) {
+    return 0;
+  } else if (val < 0) {
     return -1;
-  }
-  if (val < 0 || ship < 0) {
-    alert(PRICE_ROW_THAN_ZERO);
-    return -1;
-  }
-  let sum = 0;
-  if (ship === "") {
-    sum = parseInt(val);
   } else {
-    sum = parseInt(val) + parseInt(ship);
+    return val;
   }
-  return sum;
 }
 
 function calcFeeFlea(sum) {
@@ -66,11 +48,15 @@ function calcFeeShop(sum) {
 }
 
 function handleCalc(event) {
-  //총금액 변수 선언
-  let price = checkPrice(PRICE.value, SHIPPING.value);
-  if (price < 0) {
+  price = checkInput(parseInt(PRICE.value));
+  shipping = checkInput(parseInt(SHIPPING.value));
+
+  if (price < 1 || shipping < 0) {
     return false;
   }
+  //총금액 변수 선언
+  let sum = price + shipping;
+
   //금액 공백 입력시 에러 후 종료
   let fee = 0;
 
@@ -80,15 +66,20 @@ function handleCalc(event) {
     fee = calcFeeShop(price);
   }
   fee = Math.ceil(fee);
-  const ESTIMATE = JSON.stringify(Math.ceil((price + fee) * 12));
+  const sumAndFee = sum + fee;
+  const ESTIMATE = JSON.stringify(Math.ceil(sumAndFee * 12));
   MESSAGE.innerText =
-    "견적 금액 : " + `${ESTIMATE}원입니다.\n(포함된 대행료 : ${fee * 12}원)`;
+    `엔화 총 금액 : ${sumAndFee}엔으로\n` +
+    `(물품 금액 : ${sum}엔 + 대행료 : ${fee}엔)\n` +
+    "견적 금액은 " +
+    `${ESTIMATE}원입니다.\n
+    (포함된 대행료 : ${fee * 12}원)\n
+    👇🏻입금계좌 안내는 아래의 링크로👇🏻 \n`;
+  ACCOUNT_INFO.innerText = "계좌 안내 링크";
 }
 
 function init() {
   BTN.addEventListener("click", handleCalc);
-  PRICE.addEventListener("keypress", handleInput);
-  SHIPPING.addEventListener("keypress", handleInput);
   PRICE_CLEAR_BTN.addEventListener("click", clearPrice);
   SHIPPING_CLEAR_BTN.addEventListener("click", clearShipping);
 }
